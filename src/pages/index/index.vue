@@ -11,7 +11,7 @@
   >
     <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
   </uni-card>
-  <view class="index">indexaaa</view>
+  <view class="index">index</view>
 </template>
 
 <style lang="scss">
