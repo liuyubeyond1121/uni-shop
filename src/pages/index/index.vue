@@ -1,16 +1,23 @@
 <script setup lang="ts">
-//
+import { onLoad } from '@dcloudio/uni-app'
+import CustomNavbar from './components/CustomNavbar.vue'
+import { getHomeBannerAPI } from '@/services/home'
+import { ref } from 'vue'
+import type { BannerItem } from '@/types/home'
+
+const BannerList = ref<BannerItem[]>([])
+const getHomeBannerData = async () => {
+  const res = await getHomeBannerAPI()
+  BannerList.value = res.result
+}
+onLoad(() => {
+  getHomeBannerData()
+})
 </script>
 
 <template>
-  <uni-card
-    title="基础卡片"
-    sub-title="副标题"
-    extra="额外信息"
-    thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-  >
-    <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-  </uni-card>
+  <CustomNavbar />
+  <XtxSwiper :list="BannerList" />
   <view class="index">index</view>
 </template>
 
