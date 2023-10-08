@@ -88,6 +88,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.11.9
     version: 18.11.10
+  '@types/uni-app':
+    specifier: ^1.4.5
+    version: 1.4.5
   '@uni-helper/uni-app-types':
     specifier: ^0.5.8
     version: 0.5.8(typescript@5.1.6)
@@ -3223,6 +3226,12 @@ packages:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
     dev: true
 
+  /@types/uni-app@1.4.5:
+    resolution: {integrity: sha512-xVxlWeU6X+lpMGTS5c1eVYexUGyvQu0gS/KarRG6czJHFkFlLtV4+5GcoQHraM6PXkR6LlMxQdCVvMSs8zznaQ==}
+    dependencies:
+      vue: 2.7.14
+    dev: true
+
   /@types/yargs-parser@21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
     dev: true
@@ -3499,6 +3508,14 @@ packages:
     dependencies:
       '@vue/compiler-core': 3.3.4
       '@vue/shared': 3.3.4
+
+  /@vue/compiler-sfc@2.7.14:
+    resolution: {integrity: sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA==}
+    dependencies:
+      '@babel/parser': 7.22.10
+      postcss: 8.4.28
+      source-map: 0.6.1
+    dev: true
 
   /@vue/compiler-sfc@3.2.47:
     resolution: {integrity: sha512-rog05W+2IFfxjMcFw10tM9+f7i/+FFpZJJ5XHX72NP9eC2uRD+42M3pYcQqDXVYoj74kHMSEdQ/WmCjt8JFksQ==}
@@ -7665,6 +7682,13 @@ packages:
       '@vue/typescript': 1.8.8(typescript@5.1.6)
       semver: 7.3.8
       typescript: 5.1.6
+    dev: true
+
+  /vue@2.7.14:
+    resolution: {integrity: sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ==}
+    dependencies:
+      '@vue/compiler-sfc': 2.7.14
+      csstype: 3.1.2
     dev: true
 
   /vue@3.3.4:
