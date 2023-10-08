@@ -10,7 +10,7 @@
         </view>
       </view>
       <view class="categories">
-        <scroll-view scroll-y="true" class="primary">
+        <scroll-view :scroll-y="true" class="primary">
           <view class="item active sk-pseudo sk-pseudo-circle">
             <text class="name sk-transparent sk-text-14-2857-596 sk-text">居家</text>
           </view>
@@ -39,10 +39,10 @@
             <text class="name sk-transparent sk-text-14-2857-910 sk-text">杂项</text>
           </view>
         </scroll-view>
-        <scroll-view scroll-y="true" class="secondary">
+        <scroll-view :scroll-y="true" class="secondary">
           <view is="components/XtxSwiper" class="banner">
             <view class="carousel XtxSwiper--carousel">
-              <swiper circular="true" interval="3000" current="0" autoplay="false">
+              <swiper :circular="true" :interval="3000" :current="0" :autoplay="false">
                 <swiper-item
                   style="
                     position: absolute;
