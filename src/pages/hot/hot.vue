@@ -14,10 +14,8 @@ const hotMap = [
 const query = defineProps<{
   type: string
 }>()
-console.log(query.type)
 
 const currentHotMap = hotMap.find((v) => v.type === query.type)
-console.log(currentHotMap)
 // 动态设置标题
 uni.setNavigationBarTitle({ title: currentHotMap!.title })
 
@@ -35,6 +33,23 @@ const getHotRecommendData = async () => {
 onLoad(() => {
   getHotRecommendData()
 })
+// 滚动触底
+const onScrolltolower = async () => {
+  // 获取当前选项
+  const currentSubType = subTypes.value[activeIndex.value]
+  // 当前页码累加
+  currentSubType.goodsItems.page++
+  // 调用Api传参
+  const res = await getHotRecommendAPI(currentHotMap!.url, {
+    subType: currentSubType.id,
+    page: currentSubType.goodsItems.page,
+    pageSize: currentSubType.goodsItems.pageSize,
+  })
+  // 新的列表选项
+  const newSubTypes = res.result.subTypes[activeIndex.value]
+  // 数组追加
+  currentSubType.goodsItems.items.push(...newSubTypes.goodsItems.items)
+}
 </script>
 
 <template>
@@ -61,6 +76,7 @@ onLoad(() => {
       :key="item.id"
       scroll-y
       class="scroll-view"
+      @scrolltolower="onScrolltolower"
     >
       <view class="goods">
         <navigator
