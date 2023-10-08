@@ -21,11 +21,15 @@ uni.setNavigationBarTitle({ title: currentHotMap!.title })
 
 // 推荐封面图
 const bannerPicture = ref<string>('')
-const subTypes = ref<SubTypeItem[]>([])
+const subTypes = ref<(SubTypeItem & { finish?: boolean })[]>([])
 const activeIndex = ref(0)
 // 获取热门推荐数据s
 const getHotRecommendData = async () => {
-  const res = await getHotRecommendAPI(currentHotMap!.url)
+  const res = await getHotRecommendAPI(currentHotMap!.url, {
+    // 技巧：环境变量，开发环境，修改初始值
+    page: import.meta.env.DEV ? 30 : 1,
+    pageSize: 10,
+  })
   bannerPicture.value = res.result.bannerPicture
   subTypes.value = res.result.subTypes
 }
@@ -37,8 +41,18 @@ onLoad(() => {
 const onScrolltolower = async () => {
   // 获取当前选项
   const currentSubType = subTypes.value[activeIndex.value]
-  // 当前页码累加
-  currentSubType.goodsItems.page++
+  if (currentSubType.goodsItems.page < currentSubType.goodsItems.pages) {
+    // 当前页码累加
+    currentSubType.goodsItems.page++
+  } else {
+    // 标记已结束
+    currentSubType.finish = true
+    // 退出并提示
+    return uni.showToast({
+      title: '没有更多数据了~',
+      icon: 'none',
+    })
+  }
   // 调用Api传参
   const res = await getHotRecommendAPI(currentHotMap!.url, {
     subType: currentSubType.id,
@@ -94,7 +108,7 @@ const onScrolltolower = async () => {
           </view>
         </navigator>
       </view>
-      <view class="loading-text">正在加载...</view>
+      <view class="loading-text">{{ item.finish ? '没有更多数据了~' : '正在加载...' }}</view>
     </scroll-view>
   </view>
 </template>
