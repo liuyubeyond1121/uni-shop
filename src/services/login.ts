@@ -12,3 +12,17 @@ export const postLoginWxMinAPI = (data: LoginParams) => {
     data,
   })
 }
+/**
+ * 内测登录
+ * @param phoneNumber 模拟手机号
+ * @returns
+ */
+export const postLoginWxMinSimpleAPI = (phoneNumber: string) => {
+  return http({
+    method: 'POST',
+    url: '/login/wxMin/simple',
+    data: {
+      phoneNumber,
+    },
+  })
+}
